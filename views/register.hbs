@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Register - Sports Gear Shop</title>
+    <link rel="stylesheet" href="/login.css">
+    <script src="https://kit.fontawesome.com/b07fb295cb.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="form-box">
+        <!-- Login Section -->
+        <div id="login-section" class="form-section {{#unless message}}active{{/unless}}">
+            <h1>Login</h1>
+            <form id="login-form" action="/auth/login" method="POST">
+                <div class="input-field">
+                    <input type="email" placeholder="Email" name="email" required>
+                </div>
+                <div class="input-field">
+                    <input type="password" placeholder="Password" name="password" required>
+                </div>
+                <button type="submit" class="submit-btn">Login</button>
+                <p>Don't have an account? <button type="button" id="show-register" class="switch-btn">Register</button></p>
+            </form>
+        </div>
+
+        <!-- Register Section -->
+        <div id="register-section" class="form-section {{#if message}}active{{/if}}">
+            <h1>Register</h1>
+            <form id="register-form" action="/auth/register" method="POST">
+                <div class="input-field">
+                    <input type="text" placeholder="Name" name="name" required>
+                </div>
+                <div class="input-field">
+                    <input type="email" placeholder="Email" name="email" required>
+                </div>
+                <div class="input-field">
+                    <input type="password" placeholder="Password" name="password" required>
+                </div>
+                <div class="input-field">
+                    <input type="password" placeholder="Confirm Password" name="passwordConfirm" required>
+                </div>
+                <button type="submit" class="submit-btn">Register</button>
+                <p>Already have an account? <button type="button" id="show-login" class="switch-btn">Login</button></p>
+            </form>
+        </div>
+        {{#if message}}
+        <h4 class="alert alert-danger mt-4">{{message}}</h4>
+        {{/if}}
+    </div>
+    <script src="/login.js"></script>
+</body>
+</html>

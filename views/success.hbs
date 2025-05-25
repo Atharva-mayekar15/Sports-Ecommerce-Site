@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Success</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <section class="section visible">
+        <h1>Payment Successful!</h1>
+        <p>Thank you for your purchase. You’ll receive a confirmation soon.</p>
+
+        {{#if receipt}}
+            <h2>Your Receipt</h2>
+            <div class="receipt">
+                <p><strong>Transaction ID:</strong> {{receipt.transactionId}}</p>
+                <p><strong>Date:</strong> {{receipt.date}}</p>
+                <h3>Items Purchased:</h3>
+                <ul>
+                    {{#each receipt.items}}
+                        <li>{{name}} - ₹{{price}} (x{{quantity}})</li>
+                    {{/each}}
+                </ul>
+                <p><strong>Total:</strong> ₹{{receipt.total}}</p>
+            </div>
+            <button onclick="window.print()" class="proceed-btn">Print Receipt</button>
+        {{else}}
+            <p>No receipt details available.</p>
+        {{/if}}
+
+        <a href="/" class="back-to-shop-btn">Back to Shop</a> <!-- Updated with a class -->
+    </section>
+    <script>
+        localStorage.removeItem('cart');
+    </script>
+</body>
+</html>

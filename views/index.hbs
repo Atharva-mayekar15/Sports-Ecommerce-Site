@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sports Gear Shop</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">Sports Gear</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#categories">Categories</a></li>
+            <li><a href="#featured">Featured Products</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+            {{#if user.isAdmin}}
+                <li><a href="/admin/dashboard">Admin Dashboard</a></li>
+            {{/if}}
+        </ul>
+        <div class="nav-right">
+            <input type="text" placeholder="Search gear..." class="search-bar">
+            <button class="cart-btn">Cart (<span id="cart-count">0</span>)</button>
+            <a href="/auth/logout" class="logout-btn">Logout</a>
+        </div>
+    </nav>
+
+    <div id="cart-modal" class="cart-modal">
+        <div class="cart-content">
+            <span class="close-cart">×</span>
+            <h2>Your Cart</h2>
+            <div id="cart-items"></div>
+            <p id="cart-total">Total: ₹0.00</p>
+            <button id="proceed-payment" class="proceed-btn">Proceed to Payment</button>
+        </div>
+    </div>
+
+    <section id="home" class="section visible">
+        <h1>Welcome to Sports Gear Shop</h1>
+        <p>Unleash your potential with top-tier sports equipment.</p>
+    </section>
+
+    <section id="categories" class="section visible">
+        <h2>Categories</h2>
+        <div class="category-list">
+            <div class="category-item">Football</div>
+            <div class="category-item">Basketball</div>
+            <div class="category-item">Cricket</div>
+            <div class="category-item">Fitness</div>
+        </div>
+    </section>
+
+    <section id="featured" class="section visible">
+        <h2>Featured Products</h2>
+        <div class="product-list">
+            {{#each products}}
+                <div class="product-item">
+                    <div class="product-img">
+                        <img src="{{imgSrc}}" alt="{{name}}" class="product-image">
+                    </div>
+                    <h3>{{name}}</h3>
+                    <p>₹{{price}}</p>
+                    <button class="add-to-cart" data-name="{{name}}" data-price="{{price}}" data-img="{{imgSrc}}">Add to Cart</button>
+                </div>
+            {{else}}
+                <p>No products available.</p>
+            {{/each}}
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <h2>About Us</h2>
+        <p>Namaste! Welcome to Sports Gear Shop, founded by Vikram Patil, a Mumbaikar with a lifelong passion for sports. A former gully cricket champion, Vikram started this shop in 2018 to bring world-class sports equipment to the city of dreams. Based in Mumbai, we’ve been serving athletes from local maidans to professional pitches for over five years. Our goal is to equip you with the best gear to conquer every game, whether it’s cricket, football, or beyond!</p>
+    </section>
+
+    <section id="contact" class="section">
+        <h2>Contact Us</h2>
+        <p>Email: <a href="mailto:vikram@sportsgearshop.in">vikram@sportsgearshop.in</a></p>
+        <p>Phone: +91 98210 56789</p>
+        <p>Shop No. 7, Shivaji Sports Complex, Near Marine Drive, Churchgate, Mumbai - 400020, India</p>
+        <p>Store Hours: Mon-Sat: 10 AM - 9 PM | Sun 11 AM - 6 PM</p>
+        <p>Owner: Vikram Patil - Reach out for tips to ace your game!</p>
+    </section>
+
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="/java.js"></script>
+</body>
+</html>
