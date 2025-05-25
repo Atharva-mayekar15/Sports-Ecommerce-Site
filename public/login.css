@@ -1,0 +1,106 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    background: #1a1a1a;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-box {
+    width: 90%;
+    max-width: 400px;
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.form-section {
+    display: none;
+}
+
+.form-section.active {
+    display: block;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 30px;
+    color: #ffcc00;
+    position: relative;
+}
+
+h1::after {
+    content: '';
+    width: 20px;
+    height: 3px;
+    border-radius: 3px;
+    background: #ffcc00;
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.input-field {
+    margin: 15px 0;
+    border-radius: 3px;
+    background: #eaeaea;
+}
+
+input {
+    width: 100%;
+    background: transparent;
+    border: 0;
+    outline: 0;
+    padding: 15px;
+    font-size: 14px;
+}
+
+.submit-btn {
+    width: 100%;
+    background: #ffcc00;
+    color: #1a1a1a;
+    height: 40px;
+    border-radius: 20px;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.submit-btn:hover {
+    background: #e6b800;
+}
+
+p {
+    text-align: center;
+    font-size: 12px;
+    color: #555;
+    margin-top: 15px;
+}
+
+.switch-btn {
+    background: none;
+    border: none;
+    color: #ffcc00;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0;
+}
+
+.switch-btn:hover {
+    color: #e6b800;
+}
