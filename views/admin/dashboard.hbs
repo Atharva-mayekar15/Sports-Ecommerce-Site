@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Sports Gear Shop</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">Sports Gear</div>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/admin/dashboard">Admin Dashboard</a></li>
+        </ul>
+        <div class="nav-right">
+            <a href="/auth/logout" class="logout-btn">Logout</a>
+        </div>
+    </nav>
+
+    <section class="section visible">
+        <h1>Admin Dashboard</h1>
+        <h2>Add New Product</h2>
+        <form action="/admin/add-product" method="POST" class="admin-form-box">
+            <div class="admin-input-field">
+                <input type="text" name="name" id="name" placeholder=" " required>
+                <label for="name">Product Name</label>
+            </div>
+            <div class="admin-input-field">
+                <input type="number" name="price" id="price" placeholder=" " step="0.01" required>
+                <label for="price">Price (₹)</label>
+            </div>
+            <div class="admin-input-field">
+                <input type="text" name="imgSrc" id="imgSrc" placeholder=" " required>
+                <label for="imgSrc">Image URL (e.g., /images/item.jpg)</label>
+            </div>
+            <button type="submit" class="admin-submit-btn">Add Product</button>
+            {{#if success}}
+                <p class="form-message success">Product added successfully!</p>
+            {{/if}}
+            {{#if error}}
+                <p class="form-message">Failed to add product. Please try again.</p>
+            {{/if}}
+        </form>
+
+        <h2>Current Products</h2>
+        <div class="product-list">
+            {{#each products}}
+                <div class="product-item">
+                    <div class="product-img">
+                        <img src="{{imgSrc}}" alt="{{name}}" class="product-image">
+                    </div>
+                    <h3>{{name}}</h3>
+                    <p>₹{{price}}</p>
+                    <form action="/admin/remove-product" method="POST">
+                        <input type="hidden" name="id" value="{{id}}">
+                        <button type="submit" class="remove-item">Remove</button>
+                    </form>
+                </div>
+            {{else}}
+                <p>No products found.</p>
+            {{/each}}
+        </div>
+    </section>
+</body>
+</html>
